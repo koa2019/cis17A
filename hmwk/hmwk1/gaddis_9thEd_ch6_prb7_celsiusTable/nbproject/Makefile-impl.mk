@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=gaddis_9thEd_ch3_prb12_cel2Fahrnt
+PROJECTNAME=gaddis_9thEd_ch6_prb7_celsiusTable
 
 # Active Configuration
 DEFAULTCONF=Debug

@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=gaddis_9thed_ch3_prb12_cel2fahrnt
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/gaddis_9thed_ch3_prb12_cel2fahrnt
+CND_ARTIFACT_NAME_Debug=gaddis_9thed_ch3_prb13_currency
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/gaddis_9thed_ch3_prb13_currency
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=gaddis9thedch3prb12cel2fahrnt.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/gaddis9thedch3prb12cel2fahrnt.tar
+CND_PACKAGE_NAME_Debug=gaddis9thedch3prb13currency.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/gaddis9thedch3prb13currency.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=gaddis_9thed_ch3_prb12_cel2fahrnt
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/gaddis_9thed_ch3_prb12_cel2fahrnt
+CND_ARTIFACT_NAME_Release=gaddis_9thed_ch3_prb13_currency
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/gaddis_9thed_ch3_prb13_currency
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=gaddis9thedch3prb12cel2fahrnt.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/gaddis9thedch3prb12cel2fahrnt.tar
+CND_PACKAGE_NAME_Release=gaddis9thedch3prb13currency.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/gaddis9thedch3prb13currency.tar
 #
 # include compiler specific variables
 #

@@ -13,9 +13,9 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=dll
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_9thed_ch7_prb6_rainorshine
-OUTPUT_BASENAME=gaddis_9thed_ch7_prb6_rainorshine
-PACKAGE_TOP_DIR=gaddis9thedch7prb6rainorshine/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_9thed_ch8_prb7_binarystringsearch
+OUTPUT_BASENAME=gaddis_9thed_ch8_prb7_binarystringsearch
+PACKAGE_TOP_DIR=gaddis9thedch8prb7binarystringsearch/
 
 # Functions
 function checkReturnCode
@@ -60,15 +60,15 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/gaddis9thedch7prb6rainorshine/bin"
+makeDirectory "${NBTMPDIR}/gaddis9thedch8prb7binarystringsearch/bin"
 copyFileToTmpDir "${OUTPUT_PATH}.exe" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}.exe" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/gaddis9thedch7prb6rainorshine.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/gaddis9thedch8prb7binarystringsearch.tar
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/gaddis9thedch7prb6rainorshine.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/gaddis9thedch8prb7binarystringsearch.tar *
 checkReturnCode
 
 # Cleanup

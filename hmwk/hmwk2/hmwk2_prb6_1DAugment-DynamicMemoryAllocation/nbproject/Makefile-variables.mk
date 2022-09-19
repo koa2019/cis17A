@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=hmwk2_prb4_sum-dynamicmemoryallocation
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/hmwk2_prb4_sum-dynamicmemoryallocation
+CND_ARTIFACT_NAME_Debug=hmwk2_prb6_1daugment-dynamicmemoryallocation
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/hmwk2_prb6_1daugment-dynamicmemoryallocation
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=hmwk2prb4sum-dynamicmemoryallocation.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/hmwk2prb4sum-dynamicmemoryallocation.tar
+CND_PACKAGE_NAME_Debug=hmwk2prb61daugment-dynamicmemoryallocation.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/hmwk2prb61daugment-dynamicmemoryallocation.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=hmwk2_prb4_sum-dynamicmemoryallocation
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/hmwk2_prb4_sum-dynamicmemoryallocation
+CND_ARTIFACT_NAME_Release=hmwk2_prb6_1daugment-dynamicmemoryallocation
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/hmwk2_prb6_1daugment-dynamicmemoryallocation
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=hmwk2prb4sum-dynamicmemoryallocation.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/hmwk2prb4sum-dynamicmemoryallocation.tar
+CND_PACKAGE_NAME_Release=hmwk2prb61daugment-dynamicmemoryallocation.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/hmwk2prb61daugment-dynamicmemoryallocation.tar
 #
 # include compiler specific variables
 #

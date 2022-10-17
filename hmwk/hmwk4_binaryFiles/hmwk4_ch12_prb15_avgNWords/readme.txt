@@ -1,0 +1,1 @@
+when the Boogeyman goes to sleep every night, he checks his closet for Chuck Norris. most People have 23 pairs of chromosomes. chuck Norris has 72 and they are all poisonous. chuck Norris can win a game of Connect Four in only three moves.

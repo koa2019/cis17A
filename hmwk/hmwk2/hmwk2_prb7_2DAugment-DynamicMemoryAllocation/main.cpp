@@ -5,12 +5,14 @@
  * Purpose: hmwk2_prb7_2DAugment-DynamicMemoryAllocation
  *
  * Sample Input:                Expected Output
- *                  2 3         
- *                  1 2 3       1 2 3 
-                    4 5 6       4 5 6
-                                0 0 0 0 
-                                0 1 2 3 
-                                0 4 5 6
+ *                  3 4         
+ *                  1 2 3 4      1 2 3 4
+                    5 6 7 8      5 6 7 8
+                    9 1 2 3      9 1 2 3(endl)
+                                 0 0 0 0 0
+                                 0 1 2 3 4
+                                 0 5 6 7 8 
+                                 0 9 1 2 3(no endl)
  */
  
 #include <iostream>
@@ -36,14 +38,31 @@ int main(){
 	
 	printDat(ptr2D,row,col);
 	
-	//cout << endl;
+	cout << endl;
+/*
+    row=row+1;
+    col=col+1;
+    aug2D = augment(ptr2D,row,col);
+    printDat(aug2D,row,col);
+*/
+    
+	aug2D = augment(ptr2D,row+1,col+1);
+	printDat(aug2D,row+1,col+1);
+
+/*	
+	cout << "Inside main() **aug2D" << endl;
+	for(int r=0;r<row;r++){
+        
+        for(int c=0;c<col;c++){
+            
+            cout << aug2D[r][c];
+        }
+        cout << endl;
+	}
+*/	
+	//cout<<"print aug2D"<<endl;
+
 	
-	row = row+1;
-	col = col+1;
-	
-	aug2D = augment(ptr2D,row,col);
-	
-	printDat(aug2D,row,col);
 	
 	destroy(ptr2D,row);
 	
@@ -59,8 +78,8 @@ int main(){
 int **getData(int &row, int &col){
     
     cin >> row >> col;
-    cin.ignore();
     
+    // allocate dynamic memory for a 2D array with number of rows
     int **arr = new int*[row];
     
     // initialize each row with an array of columns
@@ -76,9 +95,6 @@ int **getData(int &row, int &col){
             cin >> arr[r][c]; 
         }
     }
-    
-    cin.ignore();
-    
     return arr;
 }
 
@@ -86,92 +102,90 @@ int **getData(int &row, int &col){
 //Augment the original array
 int **augment(const int * const *arr, int row, int col){
     
-    //int newRow = row+1,
-      //  newCol = col+1;
-    
-    //cout <<"newRow= " << newRow << "  newCol= " << newCol << endl << endl;    
-    
-    int **arr2D = new int*[row];
-    
+    //cout << "row=" << row << " col=" << col << endl;
+   
+    //create 2D pointer and initialize it with pointers
+    int **aug2D = new int*[row];
+
+    //loop through rows    
     for(int r=0;r<row;r++){
         
         //allocate each row with an array of columns
-        arr2D[r] = new int[col];
+        aug2D[r] = new int[col];
   
+        //initialize each row in aug2D to zero or with *arr[][] value
         for(int c=0;c<col;c++){
                 
-                //initialize each index in 2D array to zero
-                arr2D[r][c] = 0;
+            // initialize to zero
+            aug2D[r][c] = 0;
                 
-                if( (r==1 || r==2) && (c>=1 && c<=3) ){
-                    
-                    arr2D[r][c] = arr[r-1][c-1];
-                }
+            //add *arr[][] values to aug2D starting at arr2D[1][1]
+            if( (r>0) && (c>=1 && c<=col) ){ //tc 1
+              
+                aug2D[r][c] = arr[r-1][c-1];
+            }
         }
     }
-    
-    return arr2D;
+    return aug2D;
 }
 
 
 //Print the Matrix
 void printDat(const int * const *arr,int row, int col){
     
-    //cout <<"\nrow=" << row << "  col=" << col << endl<<endl;    
-    int c,lastR,lastC;
+    //cout <<"row=" << row << "  col=" << col << endl;   
     
-    lastR=row-1;
-    lastC=col-1;
+    //make sure row and col is at least 2
+    row=row<2?2:row;
+    col=col<2?2:col;
     
-    //cout<<row<<"-1= "<<lastR<<" \n";
-    //cout<<col<<"-1= "<<lastC<<" \n";
-     
-    for(int r=0;r<row;r++){
+    //cout <<"row=" << row << "  col=" << col << endl;    
+    
+    int c;
+    int r;
+    
+    for(r=0;r<row;r++){
+        
+        //cout << "r=" << r << endl;
+        
         for(c=0;c<col;c++){
          
-            //cout <<" r=" << r << "_c=" << c;    
+            //cout << "c=" << c << endl;    
             
             cout << arr[r][c];
-            
-            if(c!=col-1) { 
-                cout << " ";
-            } 
-            else cout << endl;
-            
-            
-        /*    else {
-                
-           // if( (r==row-1) && (c==col-1) ) cout << "";
-           
-            //else cout << endl;
-            }
-        */    
+            if(c!=col-1) cout << " ";
+            else if(r<row-1 && c==col-1) cout << endl;
+            else cout << "";
+        
+        /*    
+            if(c!=col-1) cout << arr[r][c] << " ";
+            else if(r!=row-1 && c==col-1) cout << arr[r][c] << endl;
+            else cout << arr[r][c] << "";
+        */
          
-         
-        /*
-            if(r==3 && c==col-1) {cout << arr[r][c] << " ";}
-            
-            else if(r<=1 && c==col-1) {cout << arr[r][c] << endl;}
-            
-            else if(c!=col-1) { cout << arr[r][c] << " ";} //if(c!=col-1) 
-            
-            else cout << arr[r][c];
-            
-            //cout<<" hit";
-        */               
+        /* 
+            if( (c==col-1) && (!(r==row-1)) ) { cout << arr[r][c] << endl; }
+            else if(!(c==col-1)) { cout << arr[r][c] << " "; }
+            else { cout << arr[r][c] << " "; } 
+        */
         }
         
+        if(r!=row-1 && c==col-1) cout << endl;
     }
+    //cout << endl;
+    //if(r<=2) cout << endl;
 }
 
 
 //Destroy the Matrix, i.e., reallocate memory
 void destroy(int **arr, int row){
     
+    //delete each row in pointer
     for(int r=0;r<row;r++){
         
         delete []arr[r];
     }
     
+    //delete pointer
     delete []arr;
 }

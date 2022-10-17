@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=hmwk2_prb7_
+PROJECTNAME=hmwk2_prb7_2DAugment-DynamicMemoryAllocation
 
 # Active Configuration
 DEFAULTCONF=Debug

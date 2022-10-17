@@ -16,70 +16,133 @@ const int SIZE = 4; //4 Quarters in a year
 
 struct Company {
     string divName;
-    int qtr[SIZE];
     float sales[SIZE];
 };
-struct Report{
-    float cQtrTot;
-};
+
+
 //function prototypes
 
 int main(int argc, char** argv) {
 
-    float totQtrC,  //total company sales for each quarter
-            totYrDiv, //total yearly sales for each division
-            totYrC, //total yearly company sales
-            avgQtrDiv, //average quarterly sales for divisions
-            hghQtrC, //highest quarters for company
-            lwQtrC; //lowest quarters for company
-    
-    Company c;
-    Report *rep=nullptr;
-    fstream binIn,//to read binary file
-            txtIn;//to read txt file
+    //declare variables
+    fstream binOut, //to write to binary file
+            txtOut, //to write to txt file
+            binIn, //to read binary file
+            txtIn; //to read txt file
 
+    int hghIndx, //index for highest sale's quarter 
+            lowIndex; //index for lowest sale's quarter
+
+    float ttlSale, //total sales
+
+            ttlDSal, //total yearly sales for each division            
+            hghQtrC, //highest sale's quarter for company
+            lwQtrC; //lowest sale's quarter for company   
+
+    string div[] = {"North", "South", "East", "West"};
+    float s[] = {1000, 2000, 3000, 4000};
+    float ttlQSal[SIZE] = {0}; //total company sales for each quarter
+    Company c; //declare new structure
+
+
+    //open output files or create file if it doesn't exist
+    binOut.open("sales.bin", ios::out | ios::binary);
+    txtOut.open("sales.txt", ios::out | ios::binary);
+
+    //check for error opening file
+    if (!binOut) cout << "Error opening binOut file\n";
+    if (!txtOut) cout << "Error opening txtOut file\n";
+
+    //initialize variables
+    ttlSale = ttlDSal = 0;
+
+    //write to binary and text output files
+    //set each divisions sales data for the year
+    for (int i = 0; i < SIZE; i++) {
+
+        c.divName = div[i]; //set user input as structure member's value
+        txtOut << c.divName << endl; //write structure's member value to txt file
+
+        //loop to set each divisions 4 sale's quarters 
+        for (int j = 0; j < SIZE; j++) {
+            //          
+            c.sales[j] = s[j]; //set user input as structure member's value                                     
+            txtOut << "sales[" << j << "]= " << c.sales[j] << endl; //write structure's member value to txt file                         
+        }
+        txtOut << endl;
+
+        //write entire structure to binary output file
+        binOut.write(reinterpret_cast<char *> (&c), sizeof (c));
+    }
+
+    //close files
+    binOut.close();
+    txtOut.close();
+
+    //open read in files 
     binIn.open("sales.bin", ios::in | ios::binary);
     txtIn.open("sales.txt", ios::in | ios::binary);
-    
+
     //check for error opening file
-    if (!binIn) cout << "Error opening binIn file\n";
-    if (!txtIn) cout << "Error opening txtIn file\n";
-    
-    totQtrC=totYrDiv=totYrC=avgQtrDiv=0;
-    
-    //set each divisions sales data for the year
-    for (int i = 0; i<SIZE; i++) {
-
-        
-        
-        //loop to calculate yearly sums all 4 quarters for each division in company
-        for (int j = 0; j < SIZE; j++) {
-
-        
-                //cout << "Enter Quarter\n";
-                //cin >> c.qtr[i];
-                //txtIn >> c.qtr[i];
-                
-                //cout << "Sales for the Quarter\n";
-                
-                //txtIn >> c.sales[i];
-                //totQtrC +=c.sales[i];
-                //rep->cQtrTot = totQtrC;
-                
-           
-            
-            
-        }
-        
-        
-        //write to outFile
-        //binIn.read(reinterpret_cast<char *>(&c),sizeof(c));        
+    if (!binIn) {
+        cout << "Error opening binIn file\n";
+        return 0;
     }
-   
-    //cout << rep->cQtrTot << endl;
-    //close files
+    if (!txtIn) {
+        cout << "Error opening txtIn file\n";
+        return 0;
+    }
+
+    float t0 = 0, t1 = 0, t2 = 0, t3 = 0;
+    //read first record from binary file
+    binIn.read(reinterpret_cast<char *> (&c), sizeof (c));
+
+    while (!binIn.eof()) { //while NOT end of file
+
+        //display record      
+        cout << "Division: " << c.divName << endl;
+
+        for (int j = 0; j < SIZE; j++) {
+            cout << "Quarter " << j + 1 << " = " << c.sales[j] << endl;
+            switch (j) {
+                case 0:
+                {
+                    t0 += c.sales[j];
+                    ttlQSal[j] = t0;
+                    break;
+                }
+                case 1:
+                {
+                    t1 += c.sales[j];
+                    ttlQSal[j] = t1;
+                    break;
+                }
+                case 2:
+                {
+                    t2 += c.sales[j];
+                    ttlQSal[j] = t2;
+                    break;
+                }
+                case 3:
+                {
+                    t3 += c.sales[j];
+                    ttlQSal[j] = t3;
+                    break;
+                }
+                default: cout << "hit switch() default.\n";
+            }
+        }
+
+        //read next record from binary file
+        binIn.read(reinterpret_cast<char *> (&c), sizeof (c));
+    }
+    for (int i = 0; i<SIZE; i++) {
+        cout << "total quarter" <<i<<" sales = " << ttlQSal[i] << endl;
+    }
+    //close files   
     binIn.close();
     txtIn.close();
+
     return 0;
 }
 

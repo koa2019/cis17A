@@ -38,29 +38,39 @@ int main(int argc, char** argv) {
     //set each divisions sales data for the year
     for (int i = 0; i<SIZE; i++) {
 
-        cout << "Enter division's name\n";
-        cin >> c.divName;
+        cout << "Enter division's name\n";          
+        
+        cin >> c.divName;//set user input as structure member's value
+        
+        //write structure's member value to txt file
         txtOut << c.divName << endl;
         
-        //loop to set all 4 quarters for each division
+        
+        //loop to set each divisions 4 sale's quarters 
         for (int j = 0; j < SIZE; j++) {
 
             do {
-                cout << "Enter Quarter\n";
-                cin >> c.qtr[i];
-                txtOut <<"Quarter "<< c.qtr[i] << endl;
                 
-                cout << "Enter sales for the Quarter\n";
-                cin >> c.sales[i];
-                txtOut << "Sales $" << c.sales[i];
+                cout << "Enter Quarter\n";  
+                cin >> c.qtr[i]; //set user input as structure member's value 
                 
-            } while (c.sales[i] < 0);//user validation   
+                //write structure's member value to txt file
+                txtOut <<"Quarter "<< c.qtr[i] << " Sales = "; 
+                
+                
+                cout << "Enter sales for the Quarter\n";               
+                cin >> c.sales[i];  //set user input as structure member's value
+                
+                //write structure's member value to txt file
+                txtOut << c.sales[i];  
+                
+            } while (c.sales[i] < 0); //user validation   
             
             txtOut << endl;
         }
         txtOut << endl;
         
-        //write to outFile
+        //write entire structure to binary output file
         binOut.write(reinterpret_cast<char *>(&c),sizeof(c));        
     }
    

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=notWrkngRght_midterm_p2_payChk_arrStruct_2
+PROJECTNAME=notWrkRght_midterm_p2_payChk_arrStruct_2
 
 # Active Configuration
 DEFAULTCONF=Debug

@@ -237,9 +237,9 @@ int *mode(const int *array, int arySize) {
     //prntAry(ary,arySize,10); 
 
     int j=2, 
-        count = 0, //number times an elemnt was alike 
-        freq = 0, //number of times an elemnt was found 
-        maxFreq = 0, // max number of times an elemnt was found 
+        count = 0, //number times an element was alike 
+        freq = 0, //number of times an element was found 
+        maxFreq = 0, // max number of times an element was found 
         numMods = 0; // number of total modes around in array 
 
     int elemnt = ary[0]; // declare variable and set to the first value in the array 

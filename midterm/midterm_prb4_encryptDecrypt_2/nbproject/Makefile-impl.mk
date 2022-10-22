@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=midterm_prb4_statStructure_V1
+PROJECTNAME=midterm_prb4_encryptDecrypt_2
 
 # Active Configuration
 DEFAULTCONF=Debug

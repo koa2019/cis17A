@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=midterm_prb4_statstructure_v1
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/midterm_prb4_statstructure_v1
+CND_ARTIFACT_NAME_Debug=midterm_prb3_statstructure_2
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/midterm_prb3_statstructure_2
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=midtermprb4statstructurev1.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/midtermprb4statstructurev1.tar
+CND_PACKAGE_NAME_Debug=midtermprb3statstructure2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/midtermprb3statstructure2.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=midterm_prb4_statstructure_v1
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/midterm_prb4_statstructure_v1
+CND_ARTIFACT_NAME_Release=midterm_prb3_statstructure_2
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/midterm_prb3_statstructure_2
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=midtermprb4statstructurev1.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/midtermprb4statstructurev1.tar
+CND_PACKAGE_NAME_Release=midtermprb3statstructure2.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/midtermprb3statstructure2.tar
 #
 # include compiler specific variables
 #

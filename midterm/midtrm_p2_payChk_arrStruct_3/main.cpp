@@ -92,7 +92,7 @@ void calcPay(Employee *emp, int numEmp, float &regPay, float &dblPay, float &tpl
         cout << endl;
 
         //display single employee's paycheck info
-        cout << "                     Print your check...\n";
+        cout << "                  Printing your check...\n";
         display(emp, i, regPay, dblPay, tplPay, grossPay);
     }
 }
@@ -140,7 +140,7 @@ string num2wrd(float gPay) {
     //cout << "n1= " << n1 << endl;
 
     if (n10 >= 20 && n10 <= 90) {
-        cout << "n10-n1= " << n10 - n1 << endl;
+        //cout << "n10-n1= " << n10 - n1 << endl;
         switch (n10 - n1) {
             case 90: s3 = "Ninety ";  break;
             case 80: s3 = "Eighty ";  break;

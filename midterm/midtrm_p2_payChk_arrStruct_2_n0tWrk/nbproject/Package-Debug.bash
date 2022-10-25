@@ -7,15 +7,15 @@
 # Macros
 TOP=`pwd`
 CND_PLATFORM=Cygwin-Windows
-CND_CONF=Release
+CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 CND_DLIB_EXT=dll
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/notwrkrght_midtrm_p2_paychk_arrstruct_2
-OUTPUT_BASENAME=notwrkrght_midtrm_p2_paychk_arrstruct_2
-PACKAGE_TOP_DIR=notwrkrghtmidtrmp2paychkarrstruct2/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/midtrm_p2_paychk_arrstruct_2_n0twrk
+OUTPUT_BASENAME=midtrm_p2_paychk_arrstruct_2_n0twrk
+PACKAGE_TOP_DIR=midtrmp2paychkarrstruct2n0twrk/
 
 # Functions
 function checkReturnCode
@@ -60,15 +60,15 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/notwrkrghtmidtrmp2paychkarrstruct2/bin"
+makeDirectory "${NBTMPDIR}/midtrmp2paychkarrstruct2n0twrk/bin"
 copyFileToTmpDir "${OUTPUT_PATH}.exe" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}.exe" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/notwrkrghtmidtrmp2paychkarrstruct2.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/midtrmp2paychkarrstruct2n0twrk.tar
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/notwrkrghtmidtrmp2paychkarrstruct2.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/midtrmp2paychkarrstruct2n0twrk.tar *
 checkReturnCode
 
 # Cleanup

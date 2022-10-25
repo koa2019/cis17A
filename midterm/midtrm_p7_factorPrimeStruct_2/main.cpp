@@ -32,7 +32,7 @@ struct Factors {
 
 //function prototypes
 int *setPrimes(int);            // sets prime numbers to an array
-Factors *getFactors(int, int);  // calculates prime number factors
+Factors *getFactors(int, int,int&);  // calculates prime number factors
 void printStruct(Factors *);    // print structure
 void destroy(Factors *);        // delete dynamic memory
 
@@ -40,18 +40,30 @@ void destroy(Factors *);        // delete dynamic memory
 int main(int argc, char** argv) {
 
     // declare variables
-    int size = 25; // find primes up to 100, but half will be eliminated because their even #s
-    int num = 65000;
+    int size = 25, // find primes up to 100, but half will be eliminated because their even #s
+        num = 65000,
+        q=0;
 
+    do{
+        cout<<"Enter a number between 0 and 65000 \n";
+        cin>>num;
+    }while(num<0 || num>65000);
+    
     // declare new pointer to structure    
     Factors *factors; 
 
     // set structure with data
-    factors = getFactors(size, num);
+    factors = getFactors(size, num,q);
 
     // print primes numbers in array
-    cout << "\nPrime Factors of " << num << endl;
-    printStruct(factors);
+   
+     //if (!(quot % primes[count])) {
+    if(q==num){
+        cout << q << " has NO prime factors.\n";       
+    } else {
+        cout << "\nPrime Factors of " << num << endl;
+        printStruct(factors);
+    }
 
     // delete dynamic memory
     destroy(factors);
@@ -63,25 +75,28 @@ int main(int argc, char** argv) {
 // print structure members
 void printStruct(Factors *factors) {
 
+   
     for (int i = 0; i < factors->size; i++) {
 
         if (factors->primes[i].power > 0) {
             cout << factors->primes[i].p << "^"
                     << factors->primes[i].power;
-            if (i != (factors->size) - 1) cout << " + ";
+            if (i != (factors->size) - 1) cout << " * ";
             else cout << "";
         }
     }
+    
 }
 
 // factor prime numbers out of a given #
-Factors *getFactors(int s, int num) {
+Factors *getFactors(int s, int num,int &quot) {
     
     // declare & set variables
-    int pwr = 0,    // counts how many times a prime # is divisible
-        quot = num, // quotient represents whole number after division
+    int pwr = 0,    // counts how many times a prime # is divisible        
         count = 0;  //loop counter
-     
+    
+    quot = num; // quotient represents whole number after division
+    
     // declare new pointer to structure Primes & initialize pointer with an int array 
     Factors *factors = new Factors;
 
@@ -97,6 +112,7 @@ Factors *getFactors(int s, int num) {
 
     do {        
         
+        //cout<<count<<"  " << primes[count]<<endl;
         // if quotient is divisible by current prime #
         while ((quot % primes[count]) == 0) {
 
@@ -110,16 +126,18 @@ Factors *getFactors(int s, int num) {
             // increment how many times current prime can be even divided into quot
             pwr++;
         }
+
         // set structure's member value
         factors->primes[count].power = pwr;
         
         // increment for next loop iteration
         count++;
+        //cout<<count<<endl;
         
         // reset counter
         pwr = 0;
 
-    } while (quot > 1);  // stop when quot == 1
+    } while (quot > 1 && count<=25);  // stop when quot == 1
 
     // reset size according to count
     factors->size = count;

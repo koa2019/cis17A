@@ -339,7 +339,7 @@ int main(int argc, char** argv) {
     }
 
     // print results
-    cout << "\ndouble 8 bytes 64 Bits MAX:          " << DBL_MAX << "\n";
+    cout << "\ndouble 8 bytes 64 Bits MAX:         " << DBL_MAX << "\n";
     cout << "double Limit              " << setw(2) << n10 - 1 << setw(4) << left << "! =    "
             << setw(w) << lngdblFact[n10 - 1] << endl;
     cout << "double Overflow           " << setw(2) << n10 << setw(4) << left << "! =    "
@@ -363,7 +363,7 @@ int main(int argc, char** argv) {
     }
 
     // print results
-    cout << "\nlong double 16 bytes 128 Bits MAX:           " << LDBL_MAX << "\n";
+    cout << "\nlong double 16 bytes 128 Bits MAX:           " << setw(14)<< LDBL_MAX << "\n";
     cout << "long double Limit                 " << setw(2) << n11 - 1 << setw(4) << left << "! =    "
             << setw(w) << fact11 << endl;
     //    cout <<   "long double Overflow                             " << setw(2) << n11 << setw(4) << left << "! =    "

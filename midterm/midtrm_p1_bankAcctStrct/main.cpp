@@ -26,32 +26,46 @@ struct Customer {
 };
 
 int main(int argc, char** argv) {
-
+   
+    cout<<"\nChecking Account Balance App\n\n";
+    const int SIZE = 6;
+    const float FEE = (-35.00);
     //declare variables    
-    int cnt = 1,
-            nChks,
-            nDeps,
-            length;
+    int  cnt = 1,
+          k,    //counter for user input
+          nChks,
+          nDeps,
+          length;
     float sumChks = 0,
           sumDeps = 0;
-
+    bool  isDigt=true;
+    
     //dynamically create structure
     Customer *cust = nullptr; //define a Customer pointer
 
     //dynamically allocate an array of Customer structure
     cust = new Customer[cnt];
 
-    //set structure's member values with user inputs
-    for (int i = 0; i < cnt; i++) {
-        
-        
+    //set structure's member values with user inputs         
+    for (int i = 0; i < cnt; i++) {             
         do {
             cout << "Enter 5 digit Account Number\n";
             getline(cin, cust[i].acct); //read string & save to member
             length = cust[i].acct.length();
             //cout <<"leng "<< length <<endl;
 
-        } while (length<5 || length>5); //validate acct # is 5 digits
+            // validates user input are only digits        
+            k=0;
+            isDigt=true;
+            if(length==5){     
+                while(k<5 && isDigt){               
+                    char d=cust[i].acct[k];
+                    if(!(d>='0' && d<='9'))isDigt=false;   
+                    else isDigt=true;                                                              
+                    k++;
+                }                      
+            }
+        } while (isDigt==0 || length<5 || length>5); //validate acct # is 5 digits
 
         cout << "Enter your name:  ";
         getline(cin, cust[i].name); //read string & save to member     
@@ -113,6 +127,7 @@ int main(int argc, char** argv) {
         cout << "Overdraft Fee: " << FEE*(-1) << endl
              << "New Balance: " << bal << endl;
     }
+    cout<<endl;
     
     //destroy dynamic memory
     for (int i = 0; i < 1; i++) {

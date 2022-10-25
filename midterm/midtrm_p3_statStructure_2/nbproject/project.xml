@@ -3,10 +3,10 @@
     <type>org.netbeans.modules.cnd.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>midtrm_p7_factorPrimeStruct_0</name>
+            <name>midtrm_p3_statStructure_2</name>
             <c-extensions>cpp</c-extensions>
             <cpp-extensions/>
-            <header-extensions/>
+            <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList/>

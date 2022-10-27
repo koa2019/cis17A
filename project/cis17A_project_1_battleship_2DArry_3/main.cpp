@@ -158,12 +158,12 @@ int main(int argc, char** argv) {
     Player *player1 = new Player;
     
     //create new 2D array of pointers
-    int **board = new int*[ROWS];
+    //int **board = new int*[ROWS];
     
     //create an array of columns within each of the array's rows
-    for(int r=0;r<ROWS;r++){
-        board[r] = new int[COLS];
-    }
+//    for(int r=0;r<ROWS;r++){
+//        board[r] = new int[COLS];
+//    }
     
     
     // read in data from file and initialize each player's game board[][]
@@ -172,7 +172,7 @@ int main(int argc, char** argv) {
         for(int nCols=1; nCols<COLS ;nCols++){
             
             // set structure member
-            inFile1 >> player1->board[nRows][nCols];
+            //inFile1 >> player1->board[nRows][nCols];
             inFile1 >> board1[nRows][nCols];  
             
             if(player1->board[nRows][nCols]=='S') { 

@@ -2,10 +2,14 @@
  * File:   main.cpp
  * Author: Danielle Fernandez
  * Created: 10-26-2022 @ 6 PM
- * Purpose: CIS 17A Project 1. Covers chapters 9-12 in Gaddis. Battleship v1
+ * Purpose: CIS 17A Project 1. Covers chapters 9-12 in Tony Gaddis. Battleship v1
  * Version 1: 
- *          changed P1 & P2 strings to pointers.
- *          created Player structure and set number of wins as a structure member
+ *          Changed P1 & P2 strings to pointers.
+ *          Created Player structure and set number of wins as a structure member
+ *          Added name,total rounds to structure.
+ *          Added char[] for choices to randomly fills game board w/a 
+ *          ship or blank & writes it to a text file 
+ *          Created game banner function that passes a pointer to a structure
  * 
  */
 
@@ -18,25 +22,31 @@
 #include <cstring>  // char [] library
 #include <string>   // string library
 #include <ctime>    // time library for rand()
-
 using namespace std;
 
-// User libraries
-struct Player{
-    int numWins;
-};
-struct Score{
-    int ttlRnds;
-    Player *player;
-};
+
 // Global Constants
 // Physics/Chemistry/Math/Conversions
 
+
+// User libraries
+struct Player{
+    string name;
+    int numWins;
+};
+struct Score{
+    int nPlayrs;
+    int ttlRnds;
+    Player *player;
+};
+
 // Function prototypes
+void banner(Score *);
+void rBanner(int &); 
 
-// Program execution begins here
 
-int main(int argc, char** argv) {
+
+int main(int argc, char** argv) {// Program execution begins here
 
     // set random number seed
     srand(static_cast<unsigned int> (time(0)));
@@ -47,7 +57,8 @@ int main(int argc, char** argv) {
 
     const int    MIN = 1, // minimum number for rand()
                  MAX = 14, // maximum number for rand()
-                 SIZE7=7;
+                 SIZE7=7,
+                 SIZE17=17; //choices array
    
     bool         p1_crrt, // player 1 correct
                  p2_crrt; // player 2 correct
@@ -67,19 +78,32 @@ int main(int argc, char** argv) {
                  avg2, // average number of wins for player 2
                  avgRnds;   // average rounds it takes to win
     int nPlayrs=2;
-    string p2Names[SIZE7]={"MOM", "BART", "JANIS", "STEPHANIE", "TING", "VICTOR", "JILLIAN"};   
-    string *namePtr=nullptr;
-    namePtr=p2Names;
+    string names[SIZE7]={"MOM", "BART", "JANIS", "STEPHANIE", "TING", "VICTOR", "JILLIAN"};   
+    
     
     //
     Score *score = new Score[nPlayrs];
-    score->player = new Player[nPlayrs];
     
-    // open an existing file that holds max number of games a user can play
-    inFile.open("maxNGms.txt");
-
-    // create a file to output to
-    outFile.open("scores.txt");
+    score->player = new Player[nPlayrs];
+    score->player[0].name=names[0]; // set player 1 name
+    score->player[1].name=names[5]; // set player 2 name
+    cout << score->player[0].name<<endl;
+    
+    
+    inFile.open("maxNGms.txt",ios::in); // open an existing file that holds max number of games a user can play
+    outFile.open("scores.txt",ios::out); // create a file to output to
+    
+    //void wrtFile(fstream &out,char fn[]){//https://github.com/ml1150258/2021_Fall_CSC_CIS_17a/blob/master/Lab/RainOrShine/main.cpp
+    char choices[SIZE17+1]="SBSSBSSBSSBSSBSSB"; // S=ship  B=blank
+    char *chcePtr=nullptr;
+    chcePtr=choices;
+    for(int row=0;row<2;row++){
+        for(int col=0;col<10;col++){
+            outFile<<*(chcePtr+(rand()%SIZE17))<<" ";
+            //outFile<<(chcePtr[rand()%SIZE17])<<" ";
+        }
+        outFile<<endl;
+    }
     
     // read in maximum number of games that can be played from file
     inFile >> maxGmes;
@@ -95,41 +119,22 @@ int main(int argc, char** argv) {
         p1_crrt = p2_crrt = false;
 
         // display 3 line game banner
-        for(int i=0;i<=2;i++){
-            switch(i){  // print a border or string depending on i
-                case 0:
-                case 2:
-                {
-                    for (int j=0; j<32; j++) {
-                        cout << "*";
-                    }
-                    cout << endl;
-                    break;
-                }
-                case 1:
-                {
-                    cout << setw(21) << "BATTLESHIP" << endl;
-                    break;
-                }
-                default: cout << "Error in game banner.\n";
-            }
-        }
-
-        // display games introduction message
-        cout << setw(2) << " " << "Try to guess the location of \n"
-             << setw(6) << " " << "the computer\'s ship." << endl;
+        // display game's introduction message
+        //string gameNme = "BATTLESHIP";
+        banner(score);         
         
         // loops until a player correctly guesses opponents ship location
         while((!p1_crrt) && (!p2_crrt)){
 
-            cout << endl << setw(26) << "********************" << endl;
-            cout << setw(18) << "Round " << round << endl;
-            cout << setw(26) << "********************" << endl;
+            rBanner(round); // display round number banner
+//            cout << endl << setw(26) << "********************" << endl;
+//            cout << setw(18) << "Round " << round << endl;
+//            cout << setw(26) << "********************" << endl;
 
             //*************** Player 1's Guess ************* 
             //**********************************************
             // display instructions to player 1
-            cout << endl << setw(21) << *(namePtr+1) << "\nGuess a number between 1 and " << MAX << endl;
+            cout << endl << setw(21) << score->player[0].name << "\nGuess a number between 1 and " << MAX << endl;
             
             // program generates random number guess
             p1Guess = rand()%(MAX-MIN)+MIN;
@@ -162,7 +167,7 @@ int main(int argc, char** argv) {
                 //*************** Player 2's Guess *************
                 //**********************************************
                 // display instructions to player 2
-                cout << endl << setw(21) << *(namePtr+0) << "\nGuess a number between 1 and " << MAX << endl;
+                cout << endl << setw(21) << score->player[1].name << "\nGuess a number between 1 and " << MAX << endl;
 
                 // program automatically generates a guess for player 2
                 p2Guess = rand()%(MAX-MIN)+MIN;
@@ -197,21 +202,19 @@ int main(int argc, char** argv) {
         }// ends while()
 
         // Display scoreboard banner       
-        cout << "********************************\n" << setw(21) << "SCOREBOARD\n";  
-                   
-        
-        cout << setw(4) << " " << *(namePtr+1) << setw(4) << "vs" << setw(3) << " " 
-             << right << *(namePtr+0)<< endl;
+        cout << "********************************\n" << setw(21) << "SCOREBOARD\n";                       
+        cout << setw(4) << " " << score->player[0].name << setw(4) << "vs" << setw(3) << " " 
+             << right << score->player[1].name<< endl;
         cout << setw(8) << score->player[0].numWins << setw(16) << score->player[1].numWins << endl;
 
         // calculate total number of games won & number rounds played
         ttlGmes = score->player[0].numWins + score->player[1].numWins;
-        ttlRnds += round; // sums the total number of rounds from all games
-
+        score->ttlRnds = ttlRnds +round; // sums the total number of rounds from all games        
+        
         // calculates each players percentage of winning
         avg1 = score->player[0].numWins/static_cast<float>(ttlGmes)*100;
         avg2 = score->player[1].numWins/static_cast<float>(ttlGmes)*100;
-        avgRnds = static_cast<float>(ttlRnds)/ttlGmes;
+        avgRnds = static_cast<float>(score->ttlRnds)/ttlGmes;
         
         // checks maximum number of games has NOT been played
         if(ttlGmes<maxGmes){
@@ -232,7 +235,7 @@ int main(int argc, char** argv) {
                 cout << "\nThanks for playing!\n";               
                 cout << fixed << showpoint << setprecision(2); 
                 cout << "\nAverages for " << ttlGmes << " games \n"
-                     << "Total # of rounds played: " << ttlRnds << endl
+                     << "Total # of rounds played: " << score->ttlRnds  << endl
                      << "Player 1 won ceil(" << avg1 << ")% = " 
                      << ceil(avg1) << endl
                      << "Player 2 won ceil(" << avg2 << ")% = " 
@@ -245,7 +248,7 @@ int main(int argc, char** argv) {
             cout << "Max number of games has been reached." << endl;
             cout << fixed << showpoint << setprecision(2);           
             cout << "\nAverages for " << ttlGmes << " games \n"
-                 << "Total # of rounds played: " << ttlRnds << endl
+                 << "Total # of rounds played: " << score->ttlRnds  << endl
                  << "Player 1 won ceil(" << avg1 << ")% = " 
                  << ceil(avg1) << endl
                  << "Player 2 won ceil(" << avg2 << ")% = " 
@@ -263,10 +266,10 @@ int main(int argc, char** argv) {
 
     // write scores and averages to file
     outFile << fixed << showpoint << setprecision(2);
-    outFile << "Player 1 wins: " << score->player[0].numWins  << endl
-            << "Player 2 wins: " << score->player[1].numWins << endl
+    outFile << score->player[0].name << " wins: " << score->player[0].numWins  << endl
+            << score->player[1].name << " wins: " << score->player[1].numWins << endl
             << ttlGmes << " of " << maxGmes << " max games were played.\n"    
-            << "Total # of rounds played: " << ttlRnds << endl 
+            << "Total # of rounds played: " << score->ttlRnds  << endl 
             << "\nAverages for " << ttlGmes << " games" << endl
             << "Player 1 won ceil(" << avg1 << ")% = " 
             << ceil(avg1) << endl
@@ -285,7 +288,23 @@ int main(int argc, char** argv) {
     delete []score->player;
     delete score;
     score=nullptr;
-    namePtr=nullptr;
+    chcePtr=nullptr;
     // exit code
     return 0;
+}
+
+// banner displays round number
+void rBanner(int &r){
+        ++r;
+        cout << endl << setw(26) << "********************************" << endl;
+        cout << setw(18) << "Round " << r << endl;
+        cout << setw(26) << "********************************" << endl;                     
+}
+// displays game's name and instructions in a banner
+void banner(Score *score){
+        cout << "********************************\n" << setw(21) << "BATTLESHIP\n";                       
+        cout << setw(7) << " " << score->player[0].name << setw(4) << "vs" << setw(3) << " " 
+             << right << score->player[1].name<< endl;         
+        cout << setw(2) << " " << "Try to guess the location of \n"
+             << setw(6) << " " << "the computer\'s ship." << endl;
 }

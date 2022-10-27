@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=cis17A_project1_battleship_v1
+PROJECTNAME=cis17A_project_1_battleship1DArry_v1
 
 # Active Configuration
 DEFAULTCONF=Debug

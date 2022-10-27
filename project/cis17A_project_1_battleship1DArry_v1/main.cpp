@@ -25,7 +25,7 @@ using namespace std;
 struct Player{
     int numWins;
 };
-struct Scores{
+struct Score{
     int ttlRnds;
     Player *player;
 };
@@ -72,8 +72,8 @@ int main(int argc, char** argv) {
     namePtr=p2Names;
     
     //
-    Player *player = new Player[nPlayrs];
-    
+    Score *score = new Score[nPlayrs];
+    score->player = new Player[nPlayrs];
     
     // open an existing file that holds max number of games a user can play
     inFile.open("maxNGms.txt");
@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
 
                 // increment player 1 number of wins
                 p1Win++;
-                player[0].numWins = p1Win;
+                score->player[0].numWins = p1Win;
                 nGmsLft--;  // decrease number of total games
 
                 // reassign player 1's value for a correct guess
@@ -172,7 +172,7 @@ int main(int argc, char** argv) {
 
                     // increment player 2 number of wins
                     p2Win++;
-                    player[1].numWins = p2Win; 
+                    score->player[1].numWins = p2Win; 
                     nGmsLft--;  // decrease number of total games
                     
                     // reassign player 2's value for a correct guess
@@ -202,15 +202,15 @@ int main(int argc, char** argv) {
         
         cout << setw(4) << " " << *(namePtr+1) << setw(4) << "vs" << setw(3) << " " 
              << right << *(namePtr+0)<< endl;
-        cout << setw(8) << player[0].numWins << setw(16) << player[1].numWins << endl;
+        cout << setw(8) << score->player[0].numWins << setw(16) << score->player[1].numWins << endl;
 
         // calculate total number of games won & number rounds played
-        ttlGmes = player[0].numWins + player[1].numWins;
+        ttlGmes = score->player[0].numWins + score->player[1].numWins;
         ttlRnds += round; // sums the total number of rounds from all games
 
         // calculates each players percentage of winning
-        avg1 = player[0].numWins/static_cast<float>(ttlGmes)*100;
-        avg2 = player[1].numWins/static_cast<float>(ttlGmes)*100;
+        avg1 = score->player[0].numWins/static_cast<float>(ttlGmes)*100;
+        avg2 = score->player[1].numWins/static_cast<float>(ttlGmes)*100;
         avgRnds = static_cast<float>(ttlRnds)/ttlGmes;
         
         // checks maximum number of games has NOT been played
@@ -263,8 +263,8 @@ int main(int argc, char** argv) {
 
     // write scores and averages to file
     outFile << fixed << showpoint << setprecision(2);
-    outFile << "Player 1 wins: " << player[0].numWins  << endl
-            << "Player 2 wins: " << player[1].numWins << endl
+    outFile << "Player 1 wins: " << score->player[0].numWins  << endl
+            << "Player 2 wins: " << score->player[1].numWins << endl
             << ttlGmes << " of " << maxGmes << " max games were played.\n"    
             << "Total # of rounds played: " << ttlRnds << endl 
             << "\nAverages for " << ttlGmes << " games" << endl
@@ -282,6 +282,9 @@ int main(int argc, char** argv) {
     outFile.close();
 
     //de-allocate dynamic memory
+    delete []score->player;
+    delete score;
+    score=nullptr;
     namePtr=nullptr;
     // exit code
     return 0;

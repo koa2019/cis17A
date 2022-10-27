@@ -1,0 +1,9 @@
+Player 1 wins: 1
+Player 2 wins: 0
+1 of 0 max games were played.
+Total # of rounds played: 10
+
+Averages for 1 games
+Player 1 won ceil(100.00)% = 100.00
+Player 2 won ceil(0.00)% = 0.00
+Avg # of rounds to win: ceil(10.00) = 10.00

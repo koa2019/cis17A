@@ -1,0 +1,11 @@
+S B S S S S B B S B 
+B S S S S S B B S S 
+MOM wins: 1
+VICTOR wins: 0
+1 of 0 max games were played.
+Total # of rounds played: 21
+
+Averages for 1 games
+Player 1 won ceil(100.00)% = 100.00
+Player 2 won ceil(0.00)% = 0.00
+Avg # of rounds to win: ceil(21.00) = 21.00

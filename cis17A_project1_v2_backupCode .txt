@@ -21,8 +21,6 @@
 #include <cstring>  // char [] library
 #include <string>   // string library
 #include <ctime>    // time library for rand()
-#include <cctype>   // toupper()
-#include <vector>   // vector
 using namespace std;
 
 
@@ -51,7 +49,7 @@ struct Score{
 // Function prototypes
 void banner(Score *);
 void rBanner(int *); 
-string *toUpper(string);
+
 
 
 int main(int argc, char** argv) {// Program execution begins here
@@ -66,8 +64,8 @@ int main(int argc, char** argv) {// Program execution begins here
     const int    MIN = 1, // minimum number for rand()
                  MAX = 14, // maximum number for rand()
                  SIZE7=7,
-                 SIZE17=17, //choices array
-                 ROWS = 3;
+                 SIZE17=17; //choices array
+   
     bool         p1_crrt, // player 1 correct
                  p2_crrt; // player 2 correct
     char         ans; // answer  
@@ -92,51 +90,13 @@ int main(int argc, char** argv) {// Program execution begins here
     int *rndPtr = nullptr;
     rndPtr = &round;
     
-    char    guessP1[ROWS][COLS]={}; 
-    
     //
     Score *score = new Score[nPlayrs];
     score->nPlayrs = nPlayrs;
     score->player = new Player[score->nPlayrs];
-    
-     // convert string to all uppercase letters
-    int indx = rand()%SIZE7;
-    cout << "indx = " << indx << endl;
-    string *namsPtr=nullptr;
-    
-    // assign names array's address to names pointer
-    namsPtr = names;  
-    
-    // declare new string pointer 
-    string *name = nullptr;
-    
-    // function sends pointer to an array, index of array I want to alter
-    // returns a single string that is all uppercase letters
-    //name = toUpper(namsPtr,indx);   
-    //cout <<"namePtr "  << *namePtr << endl;
-   
-    char ch;
-    string temp="";
-    //string *name = new string;
-    cout<< "*(namsPtr+indx) =  " <<*(namsPtr+indx)<< endl;
-    string str = *(namsPtr+indx);
-    int length = str.length();
-    cout << "string length = " << length << endl;
-    for(int i=0;i<length;i++){
-        ch = toupper(str[i]);
-        temp +=ch;
-        cout << ch << "  " << temp << endl;
-    }
-    cout << "temp = " << temp << endl;
-    //*name=temp;    
-    //cout << "*name " << *name << endl;
-    
-     
-    
-    
     score->player[0].name=names[0]; // set player 1 name
     score->player[1].name=names[5]; // set player 2 name
-    //cout << "score->player[0].name  =  " << score->player[0].name<<endl;
+    cout << score->player[0].name<<endl;
     
     
     //inFile.open("maxNGms.txt",ios::in); // open an existing file that holds max number of games a user can play
@@ -254,10 +214,9 @@ int main(int argc, char** argv) {// Program execution begins here
 
         // Display scoreboard banner       
         cout << "********************************\n" << setw(21) << "SCOREBOARD\n";                       
-        cout << setw(10) << setfill(' ') << score->player[0].name 
-             << setw(6) << setfill(' ') << right << "vs" 
-             << setw(8) << score->player[1].name << endl;
-        cout << setw(8) << score->player[0].numWins << setw(14) << score->player[1].numWins << endl;
+        cout << setw(4) << " " << score->player[0].name << setw(4) << "vs" << setw(3) << " " 
+             << right << score->player[1].name<< endl;
+        cout << setw(8) << score->player[0].numWins << setw(16) << score->player[1].numWins << endl;
 
         // calculate total number of games won & number rounds played
         ttlGmes = score->player[0].numWins + score->player[1].numWins;
@@ -323,19 +282,6 @@ int main(int argc, char** argv) {// Program execution begins here
     // exit code
     return 0;
 }
-//string *toUpper(string name){
-//    char ch;
-//    string temp="";
-//    string *name = new string;
-//    
-//    for(int i=0;i<names[indx].length();i++){
-//        ch = toupper(name[i]);
-//        temp +=ch;
-//        cout << ch << "  " << temp << endl;
-//    }
-//     *name=temp;
-//    return name;
-//}
 
 // banner displays round number
 void rBanner(int *rndPtr){

@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=cis17a_project_1_battleship_v2
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/cis17a_project_1_battleship_v2
+CND_ARTIFACT_NAME_Debug=cis17a_project_1_battleship_2darry_3
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/cis17a_project_1_battleship_2darry_3
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=cis17aproject1battleshipv2.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/cis17aproject1battleshipv2.tar
+CND_PACKAGE_NAME_Debug=cis17aproject1battleship2darry3.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/cis17aproject1battleship2darry3.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=cis17a_project_1_battleship_v2
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/cis17a_project_1_battleship_v2
+CND_ARTIFACT_NAME_Release=cis17a_project_1_battleship_2darry_3
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/cis17a_project_1_battleship_2darry_3
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=cis17aproject1battleshipv2.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/cis17aproject1battleshipv2.tar
+CND_PACKAGE_NAME_Release=cis17aproject1battleship2darry3.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/cis17aproject1battleship2darry3.tar
 #
 # include compiler specific variables
 #

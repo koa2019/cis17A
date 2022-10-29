@@ -3,14 +3,12 @@
  * Author: Danielle Fernandez
  * Created: 10-28-2022 @ 4 PM
  * Purpose: CIS 17A Project 1. Covers chapters 9-12 in Tony Gaddis. Battleship v1
- Version 3: 
- Changed Player.name to a char[] instead of string for binary files.
- Created fillScore() to dynamically create and fill Score and Player structures.
- The function randomly selects a player's name from a static array and initializes
- .name member.
- Added enum and used it inside of for loops
- * uses a 2D array to write to text and save to score->player[i].board
- * but cant figure out how to write it to bin
+ Version 4:
+ Changed choices from 2D to a new structure Choices. 
+ I used that structure to write to a binary and text file.
+ Then I looked for a specific rand() record, read it from the binary file.
+ Confirmed the correct record was located by comparing it to the text file.
+  
  */
 
 // System Libraries: 
@@ -38,6 +36,11 @@ enum day {
 
 // User libraries
 
+struct Choices {
+    int size;
+    char a;     //CHANGE TO ARRAY
+};
+
 struct Player {
     char *name;
     int numWins;
@@ -58,7 +61,7 @@ struct Score {
 // Function prototypes
 Score *fillScore(string [], int);
 void print(Score *);
-void wrtTxt(fstream &, char [][COLS10], int, int, int, const int);
+void wrtTxt(fstream &, Choices *, int);
 void wrtBin(fstream &, char *);
 void pause();
 void banner(Score *, string);
@@ -71,8 +74,8 @@ int main(int argc, char** argv) {// Program execution begins here
     srand(static_cast<unsigned int> (time(0)));
 
     // declare variables  
-    fstream binFile,
-            outFile; // for outputting to a file
+    fstream binFile;
+    fstream outFile; // for outputting to a file
     ifstream inFile; // for reading an existing file
 
     const int SIZE7 = 7,
@@ -84,11 +87,6 @@ int main(int argc, char** argv) {// Program execution begins here
 
 
     string names[SIZE7] = {"mom", "bart", "homer", "jillian", "ting", "victor", "danielle"};
-
-    char board[ROWS][COLS10] = {};
-
-    // open input and output binary file. if file does NOT exist, it is created
-    binFile.open("data.bin", ios::out | ios::binary | ios::in);
 
     // open text file & catch error
     inFile.open("numPlayers.txt", ios::in);
@@ -104,40 +102,81 @@ int main(int argc, char** argv) {// Program execution begins here
     // initializing structure with data
     score = fillScore(names, numPlay);
 
-    // print Scores structure members
-    print(score);
+    // SET PLAYER'S GAME BOARDS UP
+    int nRows = 2, nRecords = 20;
+    char board[ROWS][COLS10] = {};
+
+
+    //  WRITE & READ TO BINARY FILE    
+    // open input and output binary file. if file does NOT exist, it is created
+    binFile.open("data.bin", ios::out | ios::binary | ios::in);
 
     // create a file to write to
     outFile.open("choices.txt", ios::out);
 
-
-    //void wrtFile(fstream &out,char fn[]){                                     //https://github.com/ml1150258/2021_Fall_CSC_CIS_17a/blob/master/Lab/RainOrShine/main.cpp
+    //void wrtFile(fstream &out,char fn[]){    -->                              //https://github.com/ml1150258/2021_Fall_CSC_CIS_17a/blob/master/Lab/RainOrShine/main.cpp
     char choices[SIZE17 + 1] = "SBSSBSSBSSBSSBSSB"; // S=ship  B=blank
-    char *chcePtr = nullptr; // declare pointer to a char
-    chcePtr = choices; // assigns address of choices array to choicePointer
-    int nRows = 2, nCols, nRecords = 20;
 
+    char *chcePtr = nullptr; // declare pointer to a char
+
+    chcePtr = choices; // assigns address of choices array to choicePointer
+
+
+    // set Choices structure, write to text file and write to binary file
+    for (int record = 0; record < nRecords; record++) {
+
+        Choices *choice = new Choices;
+
+        choice->a = *(chcePtr + (rand() % SIZE17));
+
+        wrtTxt(outFile, choice, record);
+
+        binFile.write(reinterpret_cast<char *> (choice), sizeof (Choices));
+
+        delete choice;
+    }
 
     // fill 2D array 
     for (int record = 0; record < nRecords; record++) {
 
-        outFile << "record " << record << endl;
+        //outFile << "record " << record << endl;
 
         for (int row = 0; row < 2; row++) {
             for (int col = 0; col < COLS10; col++) {
                 board[row][col] = *(chcePtr + (rand() % SIZE17));
-                outFile << board[row][col] << " ";
+                //outFile << board[row][col] << " ";
                 //wrtTxt(outFile, board,row,col, record, SIZE17);
                 //outFile << *(chcePtr + (rand() % SIZE17)) << " ";                
             }
-            outFile << endl;
+            //outFile << endl;
         }
-        outFile << "\n\n";
+        //outFile << "\n\n";
     }
+    
+    // READ text and binary file
+    int recInd = rand() % nRecords;
+    cout << "Locate record #" << recInd << endl;
+
+    cout << "sizeof(Choices) = " << sizeof (Choices) << endl;
+
+    long cursor = 0L;
+
+    Choices *choice = new Choices;
+
+    cursor = recInd * sizeof (Choices);
+
+    // set cursor to beginning of file so it can read that record
+    binFile.seekg(cursor, ios::beg);
+
+    // read 1 record from binary file & save to new pointer
+    binFile.read(reinterpret_cast<char *> (choice), sizeof (Choices));
+
+    cout << "binFile.dat contents:\n";
+    cout << "record " << recInd << " = " << choice->a <<endl;
 
 
 
-    // create 2D array inside of players for **board
+    // CREATE & SET dynamic 2D array inside of players for **board
     for (int p = 0; p < score->nPlayrs; p++) {
         score->player[p].rows = nRows;
         score->player[p].cols = COLS10;
@@ -148,68 +187,39 @@ int main(int argc, char** argv) {// Program execution begins here
         // create new array of rows inside of players->board for 2D array
         score->player[p].board = new char*[score->player[p].rows];
 
-        // allocate each row with a 10 because **board should be is 2D array
+        // allocate each row with 10 columns because **board should be a 2D array
         for (int r = 0; r < score->player[p].rows; r++) {
             score->player[p].board[r] = new char[score->player[p].cols];
         }
 
-        // set **board[][]
-        int cIndx = rand()%nRecords;
-        
-        cout <<"\nis " << score->player[p].name << " board set?\n";
+        // set **board[][] BUG!  both players have same value of board[][]
         for (int row = 0; row < score->player[p].rows; row++) {
             for (int col = 0; col < score->player[p].cols; col++) {
                 score->player[p].board[row][col] = board[row][col];
-                cout << score->player[p].board[row][col] << " ";
             }
         }
     }
 
-    //    cout << "sizeof board" << sizeof (board) << " bytes" << endl;
-    //    binFile.write(chcePtr, sizeof (chcePtr));
 
-    //    // write contents of score structure to binary file
-    //    binFile.write(reinterpret_cast<char *> (&score), sizeof (Score));
-    //
-    //    int record = 1; //first record
-    //
-    //    cout << "sizeof(Score) = " << sizeof (Score) << endl;
-    //
-    //    long cursor = 0L;
-    //
-    //    Score *bScore = new Score;
-    //
-    //    cursor = record * sizeof (score);
-    //
-    //    // set cursor to beginning of file so it can read that record
-    //    binFile.seekg(cursor, ios::beg);
-    //
-    //    // read 1 record from binary file & save to new pointer
-    //    binFile.read(reinterpret_cast<char *> (bScore), sizeof (Score));
+    // print Scores structure members
+    print(score);
 
-    //    cout << "binFile.dat contents:\n";
-    //    print(bScore);
-
+    
     // close file
     binFile.close();
-
-
-
-    // close files
     inFile.close();
     outFile.close();
-    
+
+
     //de-allocate dynamic memory
-    
     for (int p = 0; p < score->nPlayrs; p++) {
         for (int row = 0; row < score->player[p].rows; row++) {
             delete []score->player[p].board[row]; //Deletes the Data row by row
         }
     }
-    
+
     delete []score->player;
     delete score;
-    //delete bScore;
     score = nullptr;
     chcePtr = nullptr;
 
@@ -220,28 +230,19 @@ int main(int argc, char** argv) {// Program execution begins here
 /***************FUNCTION DEFINITIONS**********************************/
 
 // write contents of score structure to binary file
-
 void wrtBin(fstream &binFile, char *chcePtr) {
     binFile.write(chcePtr, sizeof (chcePtr));
     // binFile.write(reinterpret_cast<char *> (*chcePtr), sizeof (char));
 }
 
 // write to text file
+void wrtTxt(fstream &outFile, Choices *choice, int record) {
 
-void wrtTxt(fstream &outFile, char board[][COLS10], int row, int col, int record, const int SIZE17) {
-
-    //outFile << "TRecord " << record << endl;
-    //for (int row = 0; row < 2; row++) {
-    //for (int col = 0; col < COLS10; col++) {
-    outFile << board[row][col] << " ";
-    //}
-    //outFile << endl;
-    //}
-    //outFile << endl << endl;
+    outFile << "Record " << setw(2) << right << record << " ";
+    outFile << setw(1) << choice->a << " \n";
 }
 
 // play game
-
 Score *fillScore(string names[], int numPlay) {
 
     int MIN = 1, // minimum number for rand()
@@ -333,9 +334,8 @@ Score *fillScore(string names[], int numPlay) {
 
             //*****************Player 1's Guess Starts Here **************************** 
 
-
             // display instructions 
-            cout << endl << setw(16) << score->player[0].name << "\nGuess a number between 1 and " << MAX << endl;
+            cout << endl << setw(10) << " " << score->player[0].name << "\n Guess a number between 1 and " << MAX << endl;
 
             // Generates random number guess between [1,14]
             p1Guess = rand() % (MAX - MIN) + MIN;
@@ -371,7 +371,7 @@ Score *fillScore(string names[], int numPlay) {
                 //*************** Player 2's Guess *************
                 //**********************************************
                 // display instructions to player 2
-                cout << endl << setw(16) << score->player[1].name << "\nGuess a number between 1 and " << MAX << endl;
+                cout << endl << setw(10)<<" " << score->player[1].name << "\n Guess a number between 1 and " << MAX << endl;
 
                 // program automatically generates a guess for player 2
                 p2Guess = rand() % (MAX - MIN) + MIN;
@@ -400,7 +400,7 @@ Score *fillScore(string names[], int numPlay) {
 
             // if both players guess wrong, then display message 
             if ((!p1_crrt) && (!p2_crrt)) {
-                cout << endl << "You Both Missed. Try Again...\n\n";
+                cout << endl << "  You Both Missed. Try Again...\n\n";
             }
 
         } // ends while((!p1_crrt) && (!p2_crrt))
@@ -433,39 +433,37 @@ Score *fillScore(string names[], int numPlay) {
 }
 
 
-// print Score structure member's
-
-void print(Score *score) {
+void print(Score *score) { // print Score structure member's
 
     // print structure's contents
-    cout << "Number of players: " << score->nPlayrs << endl;
-    cout << "Max # of games: " << score->maxGmes << endl
-            << setw(4) << setfill(' ') << "Total # of rounds it took to win: " << score->ttlRnds << endl << endl;
+    cout << "\n Scores Structure Results\n" 
+         << " Number of players: " << score->nPlayrs << endl;
+    cout << " Max # of games: " << score->maxGmes << endl
+         << setw(4) << setfill(' ') << " Total # of rounds it took to win: " << score->ttlRnds << endl << endl;
 
     for (int p = MON; p < score->nPlayrs; p++) {
 
         cout << " player[" << p << "] " << score->player[p].name << endl;
         cout << " # of wins:         " << score->player[p].numWins << endl
-                << " Ship's Location:   " << score->player[p].shipLoc << endl << endl;
+             << " Ship's Location:   " << score->player[p].shipLoc << endl;
 
-        cout<< "**board:\n";
+        cout << " **board:\n";
         for (int row = 0; row < score->player[p].rows; row++) {
             for (int col = 0; col < score->player[p].cols; col++) {
                 cout << score->player[p].board[row][col] << " ";
             }
+            cout<<endl;
         }
-        cout<<endl<<endl;
+        cout << endl << endl;
     }
 }
 
 
 // display hit message when player guesses correctly
-
 void hitMiss(Score *score, int i, bool isHit, int guess) {
 
     if (isHit) {
-        cout << setw(15) << guess << " == "
-                << score->player[i].shipLoc << endl;
+        cout << setw(10) << guess << " == " << score->player[i].shipLoc << endl;
         cout << setw(22) << "It\'s a HIT!\n" << endl;
     } else {
         cout << setw(15) << guess << endl << setw(22) << "It\'s a MISS!\n";
@@ -473,7 +471,6 @@ void hitMiss(Score *score, int i, bool isHit, int guess) {
 }
 
 // banner displays round number
-
 void rBanner(int *rndPtr) {
     *rndPtr += 1;
     cout << endl << setw(26) << "********************************" << endl;
@@ -482,7 +479,6 @@ void rBanner(int *rndPtr) {
 }
 
 // displays game's name and instructions in a banner
-
 void banner(Score *score, string title) {
 
     cout << "********************************\n" << setw(21) << title << endl;
@@ -492,15 +488,14 @@ void banner(Score *score, string title) {
 
     if (title == "SCOREBOARD") {
         cout << setw(8) << score->player[0].numWins
-                << setw(14) << score->player[1].numWins << endl;
+             << setw(14) << score->player[1].numWins << endl;
     } else {
-        cout << setw(2) << " " << "\nTry to guess the location of \n"
-                << setw(6) << " " << "the computer\'s ship." << endl;
+        cout << setw(2) << " " << "\n   Try to guess the location of \n"
+             << setw(6) << " " << "the computer\'s ship." << endl;
     }
 }
 
 // pause screen before game starts
-
 void pause() {
     cout << "\nPress enter to continue. ";
     //cin.ignore();

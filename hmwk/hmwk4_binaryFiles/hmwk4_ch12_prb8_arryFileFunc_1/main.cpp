@@ -17,12 +17,12 @@ int main(int argc, char** argv) {
 
     int size = 8;   
     int arr1[]={11,13,15,67,88,953,2,101};
-    int arr2[size];
+    int arr2[size]={};
     
-    //open text and binary files
+    // set string to name of file I want to write to
     string inputFile = "test.dat";    
    
-    //write an array to a file
+    //write values of an array to a binary file
     arr2File(inputFile,arr1,size);
     
     //read data from a file
@@ -44,6 +44,7 @@ void arr2File(string file, int *ptr2Arr, int size){
     
     //declare file
     ofstream outFile;
+    // converts string to char[] because binary files can't handle string variables
     outFile.open(file.c_str(), ios::out | ios::binary);//c_str()converts contents f string to a c-string and returns pointer to c-string
 
     //read array and write to file
@@ -62,7 +63,7 @@ void file2Arr(string file,int *ptr2Arr, int size){
 
     //read contents from file and write into an array
     for(int i=0;i<size;i++){
-        inFile >>*(ptr2Arr+i);
+        inFile >> *(ptr2Arr+i);
     }
     //display values in arr2
     cout<<"Arr2 Numbers read from file\n";

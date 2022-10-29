@@ -1,0 +1,100 @@
+record 0
+B S B S B S B S S B 
+S B B S S B S S B B 
+
+
+record 1
+B S S B S S S S B B 
+S B S S S S B S B S 
+
+
+record 2
+S S B S S S S S S S 
+B S S S B S B B B S 
+
+
+record 3
+S S B B S S B S S B 
+S S S S S S S S S B 
+
+
+record 4
+S S B S B B S S S S 
+S B S S S B S B S B 
+
+
+record 5
+S S B B S S B B S S 
+S B S B S S B S B B 
+
+
+record 6
+S B S S B S B S S S 
+S B B S B S B S S B 
+
+
+record 7
+S S B B S B S B S S 
+S S S S S S S B B S 
+
+
+record 8
+S S S S S S B S S S 
+B S S S S S S S B S 
+
+
+record 9
+S S S S S S S S S S 
+S B S S B B S B B B 
+
+
+record 10
+S B S S S S S S B S 
+S S S S S B S S S B 
+
+
+record 11
+S S S S B S S S B S 
+S B S S B B S S S S 
+
+
+record 12
+B S S S B B S B S S 
+S B S B S S B B S S 
+
+
+record 13
+S S S S S B B S S B 
+S S B S B S S S S S 
+
+
+record 14
+S S S B S S S S B B 
+S B S S S B S S B S 
+
+
+record 15
+S S S B S S S B S B 
+B S S S S B S S S B 
+
+
+record 16
+B S B S S B S S S S 
+S B S S B S S S B B 
+
+
+record 17
+S S B B B B S S S S 
+B S B S B B S B S S 
+
+
+record 18
+S S B B S S S B B B 
+S S S B S S S S S S 
+
+
+record 19
+S S S S B S B S B S 
+B S B S B S S S S B 
+
+

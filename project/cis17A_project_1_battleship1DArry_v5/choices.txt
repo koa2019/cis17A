@@ -1,13 +1,13 @@
 Record  0 S 
-Record  1 B 
+Record  1 S 
 Record  2 S 
 Record  3 S 
 Record  4 S 
-Record  5 S 
+Record  5 B 
 Record  6 S 
-Record  7 S 
-Record  8 S 
-Record  9 B 
+Record  7 B 
+Record  8 B 
+Record  9 S 
 Record 10 B 
 Record 11 B 
 Record 12 S 
@@ -17,4 +17,4 @@ Record 15 S
 Record 16 S 
 Record 17 S 
 Record 18 B 
-Record 19 B 
+Record 19 S 

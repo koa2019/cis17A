@@ -1,0 +1,80 @@
+Record  0 
+ s x S s x S w S S S
+ b j S s p S e S S s
+
+Record  1 
+ x b e S S S S x S S
+ b S s j s S a S e S
+
+Record  2 
+ a s h s S s x w S s
+ w S e S s S j S w s
+
+Record  3 
+ p s w h p S S S S S
+ x S b a S x s e S S
+
+Record  4 
+ s x S a s S e S h b
+ a j p b e S x S a j
+
+Record  5 
+ p S S a S p p j x S
+ a j S e h S S s b a
+
+Record  6 
+ S b s s S w s S b S
+ S S S S S w S s a h
+
+Record  7 
+ x h s S S S w S S s
+ x e a S s p p b s s
+
+Record  8 
+ S S s S p e b S S S
+ S S S h s b S S S b
+
+Record  9 
+ S S e S S S s S e p
+ w S j S j S S h S w
+
+Record 10 
+ h S S S p x S S S S
+ s x S p S s s p s S
+
+Record 11 
+ s S S s S S h s S S
+ w e e S S S S x S s
+
+Record 12 
+ S S h S w s j a s h
+ s w h s S h e s s h
+
+Record 13 
+ x e S S a e S x S s
+ s S S S e S S h a s
+
+Record 14 
+ S S w b h S b p a s
+ a j s s a S s e w S
+
+Record 15 
+ S p s b p s w b a p
+ s s S s S s b S p s
+
+Record 16 
+ h S e x e b S S S S
+ p S p S s a S s S S
+
+Record 17 
+ x h j S s s S p e h
+ x S b S x j b a j s
+
+Record 18 
+ S S e s S j s s h s
+ S e w h S S S S s w
+
+Record 19 
+ e S w w h S w S x S
+ S S e w s j h j p S
+

@@ -1,0 +1,80 @@
+Record  0 
+ S S b B b B S b b b
+ S S S B S s S b B s
+
+Record  1 
+ b S S S b B S s S s
+ s b b S B S s b S b
+
+Record  2 
+ b b b b b S S B B S
+ b b b s S b B S b b
+
+Record  3 
+ b b b s B B s S s S
+ b S B S b b B s b B
+
+Record  4 
+ b B b b S b b S S S
+ b s s b s S S b s S
+
+Record  5 
+ b b b s S S b b S S
+ S b B s S S b S b b
+
+Record  6 
+ b S S b S b b b s s
+ S s b S S B b b B S
+
+Record  7 
+ S S b b s b S B b S
+ b b B b S S b b b B
+
+Record  8 
+ B S S b b S b S S s
+ S b b s s S S S s s
+
+Record  9 
+ S S S S B b B b B b
+ B s S B b s S S B b
+
+Record 10 
+ B b S B b S b S b S
+ s S b S S b S S b s
+
+Record 11 
+ s s b S S B B b b B
+ S S S b s B S S b B
+
+Record 12 
+ b b B S S B S S b S
+ s b b s S S S b S b
+
+Record 13 
+ B b B S S b b B S b
+ B b b B S B b s B S
+
+Record 14 
+ B S b b b S S s S B
+ S b B b S B B s S B
+
+Record 15 
+ S S b S S b S b B s
+ b s S B S b b s b B
+
+Record 16 
+ S B b b b S S b S B
+ b s b B b B b B s B
+
+Record 17 
+ B S S S S b b S s b
+ b B s b S S s b b b
+
+Record 18 
+ S B s b b S s S s s
+ b s S S b B b s S S
+
+Record 19 
+ B s s b b s s S b B
+ s S S S S S S B S b
+

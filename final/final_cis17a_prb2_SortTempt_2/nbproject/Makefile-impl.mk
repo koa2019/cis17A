@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=final_cis17a_prb_template
+PROJECTNAME=final_cis17a_prb2_SortTempt_2
 
 # Active Configuration
 DEFAULTCONF=Debug

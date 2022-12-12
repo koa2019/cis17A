@@ -102,10 +102,11 @@ T *Prb2Sort<T>::sortArray(const T *ch2p, int rows, int cols, int column, bool as
                     
     cout << "\n\nsorting...\n";
     
-    for (int last= rows-1; last<rows; last--) { //loop for sorting
-        for(int a=0;a<last;a++){    //loop for sorting
+     // start at the last indx in array to the 2nd indx. starts at[last,1]
+    for (int last= rows-1; last<rows; last--) { //loop for sorting. 
+        for(int a=0;a<last;a++){    //loop for sorting. starts @[0,last]
             for(int i = 0,k=1; i < rows; i++,k++) { //loop for 1D array
-                for(int j = 0; j < cols; j++) {  //acting like 2D array
+                for(int j = 0; j < cols; j++) {     //acting like 2D array
            
                     int indx = (i*cols+j);            
                     //cout<< indx << " ";            

@@ -2,13 +2,15 @@
  * File:    main.cpp
  * Author:  Danielle F
  * Created: 12-07-2022 @ 7:36 PM
- * Purpose:  final_cis16a_prb2_sortTemplate_2
+ * Purpose:  final_cis17a_prb2_sortTemplate_2
  * 
  * Driver program for the above class. Create your own file to read.
  * v1:  solves it with a class.
  * v2:  Converts class to a template. Moves class functions to Prb2Sort.h file.
  * v3: From the Prb2Sort.h file Try to move 
- * lines 71-80 and 107-135 to inside of sort1() 
+ *     lines 71-80 and 107-135 to inside of sort1() 
+ * 
+ *     Add descending sort
  */
 
 //System Libraries

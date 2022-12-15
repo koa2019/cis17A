@@ -17,8 +17,7 @@ using namespace std;
 //class Prob3TableInheritd:public Table<T> {
 
 class Prob3TableInheritd : public Table {
-    //protected:
-private:
+protected:
     int *augTable;
     int tValues[100] = {//rows=5. cols=6
         101, 101, 102, 103, 104, 105,

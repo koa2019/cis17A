@@ -10,7 +10,7 @@
  * v3: From the Prb2Sort.h file Try to move 
  *     lines 71-80 and 107-135 to inside of sort1() 
  * 
- *     Add descending sort
+ *     Descending sort doesn't work
  */
 
 //System Libraries
@@ -22,16 +22,10 @@ using namespace std; //STD Name-space where Library is compiled
 #include "Prb2Sort.h"
 
 
-//Global Constants not Variables
-//Math/Physics/Science/Conversions/Dimensions
-
-//Function Prototypes
-
 //Code Begins Execution Here with function main
 int main(int argc, char** argv) {
 
-    cout << "The start of Problem 2, the sorting problem" << endl;
- 
+    cout << "\n\nProblem 2\n      Sorting Class" << endl; 
     
     //Create new object
     Prb2Sort<char> rc;
@@ -53,19 +47,20 @@ int main(int argc, char** argv) {
     
     //read in text file
     cout << "\n*ch2 contents:\n";
-    while (infile.get(*ch2) ) {
-       
-        //cout<<"i="<<count<<"->"<<*ch2<<endl;
+    while (infile.get(*ch2) ) {         
         cout << *ch2;
         ch2++;               
         count++;
         if(count%16==0)cout<<endl;
     }   
-    infile.close();      
+    infile.close();    
+    cout<<endl<<endl;
     
-    cout << "\n\nWhich column would you like to sort on?" << endl;
-    int column=15;
-    //cin>>column;
+    int column;
+    do{
+        cout << "Which column would you like to sort on? Number between [0,14]" << endl;
+        cin>>column;
+    }while(column<0 || column>14);
   
     
     //Call function that Sorts a 2D array represented as a 1 dim array            
@@ -76,8 +71,7 @@ int main(int argc, char** argv) {
     //Print a 1D array like a 2D array. Prints every 16 elements, 10 times
     for(int i=0;i<10;i++){
         for(int j=0;j<16;j++){
-            cout<<zc[i*16+j];
-            //if(j==15)cout<<endl;
+            cout<<zc[i*16+j];            
         }    
         cout<<endl;
     }

@@ -30,7 +30,7 @@ class Employee {
             }
         }
        
-        string getName() const {
+        const string getName() const {
             string temp = name;
             return temp;}           
 };

@@ -15,8 +15,8 @@ using namespace std;
 
 //template<class T>
 class Table {
-    //protected:
-    private:    
+    
+    protected:        
         int rows;       //# of rows
         int cols;       //# of cols
         int *rowSum;    //row sum array

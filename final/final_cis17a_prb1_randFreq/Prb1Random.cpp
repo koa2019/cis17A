@@ -11,7 +11,6 @@ using namespace std; //STD Name-space where Library is compiled
 //*************************************
 //         Default constructor
 //*************************************
-
 Prb1Random::Prb1Random(const char size, const char *rndseq){
     
     numRand = 0;
@@ -37,7 +36,6 @@ Prb1Random::Prb1Random(const char size, const char *rndseq){
 //*************************************
 // Returns random number from the set
 //*************************************
-
 char Prb1Random::randFromSet(){
    
     numRand++;

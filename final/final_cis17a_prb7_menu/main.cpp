@@ -2,7 +2,7 @@
  * Author:  Danielle F
  * Created: 12-14-2022 @ 10:21 PM
  * Purpose:  final_cis17a_prb7_menu
- */
+*/
 
 //System Libraries
 #include <iostream>  //Input/Output Library
@@ -11,11 +11,13 @@
 #include <iomanip> //setw()
 #include <cmath>  //pow()
 #include <fstream>  //ifstream
+#include <string>  //c_str()
 using namespace std;  //STD Name-space where Library is compiled
 
 //User Libraries
 #include "Prb1Random.h"   //prb1
 #include "Prb2Sort.h"     //prb2
+#include "Prob3TableInheritd.h" //prb3
 #include "SavingsAcct.h"  // prb4 
 #include "Prb5Employee.h" //prb5
 
@@ -28,6 +30,9 @@ void prblm3();
 void prblm4();
 void prblm5();
 void prblm6();
+
+void printCharArry(const char *);//prb5
+
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -64,12 +69,12 @@ int main(int argc, char** argv) {
 void menu(){
     //Display menu
     cout<<endl<<"Choose from the following Menu"<<endl;
-    cout<<"Type 1 for Problem 1"<<endl;
-    cout<<"Type 2 for Problem 2"<<endl;
-    cout<<"Type 3 for Problem 3"<<endl;
-    cout<<"Type 4 for Problem 3"<<endl;
-    cout<<"Type 5 for Problem 3"<<endl;
-    cout<<"Type 6 for Problem 4"<<endl<<endl;
+    cout<<"Type 1 for Problem 1 Random Sequence"<<endl;
+    cout<<"Type 2 for Problem 2 Sort on Column"<<endl;
+    cout<<"Type 3 for Problem 3 Table Sum"<<endl;
+    cout<<"Type 4 for Problem 4 Savings Account"<<endl;
+    cout<<"Type 5 for Problem 5 Employee Class"<<endl;
+    cout<<"Type 6 for Problem 6 Scaled Binary"<<endl<<endl;
 }
 
 //******************************************************************************
@@ -106,7 +111,7 @@ void prblm1(){
 //                         Problem 2 Sorting
 //******************************************************************************
 void prblm2(){
-    cout << "\n\nProblem 2\n      Sorting problem" << endl; 
+        cout << "\n\n\tProblem 2\n      Sorting Class" << endl; 
     
     //Create new object
     Prb2Sort<char> rc;
@@ -142,12 +147,17 @@ void prblm2(){
         cout << "Which column would you like to sort on? Number between [0,14]" << endl;
         cin>>column;
     }while(column<0 || column>14);
-  
+    
+    cout<<"\nEnter 1 to sort Ascending or ZERO for Descending order\n";
+    cin>>ascending;
+   
     
     //Call function that Sorts a 2D array represented as a 1 dim array            
     char *zc = rc.sortArray(ch2p, 10, 16, column, ascending);
     
-    cout<<"\nSorted array on column " << column << endl;
+    string str = ascending==true? " in ascending order" : " in descending order";
+    
+    cout<<"\nSorted array on column " << column << str <<endl<<endl;
    
     //Print a 1D array like a 2D array. Prints every 16 elements, 10 times
     for(int i=0;i<10;i++){
@@ -155,17 +165,70 @@ void prblm2(){
             cout<<zc[i*16+j];            
         }    
         cout<<endl;
-    }   
-    delete []zc;  
+    }
+    
+    delete []zc;
+  
+    cout << endl;
+    return;
 }
 
 //******************************************************************************
 //                         Problem 3
 //******************************************************************************
 void prblm3(){
-    cout<<"Problem 3\n      Sum Table";
-}
+        //Declare Variables       
+    int rows, cols;                
+   
+    cout  << "\n\n\tCIS17A Final Problem 3.\n" 
+          << "Program Input a table and \noutput the Augment row, col and total sums.\n\n"; 
+         
+    //Read Inputs for original table
+    cout << "Input the number of rows and cols. num<20 for each\n"; 
+    //cin >> rows >> cols;
+    rows = 5; // for testing purposes. when u dont want to cin everytime
+    cols = 6; 
+    cout << "Read in rows=" << rows << ",  Number cols=" << cols << endl;  
+    
+    
+    
+    //***************************************
+    // Create new instance of an object
+    //***************************************
+    Prob3TableInheritd<int> table(rows,cols);
+    
+    //Output the original array
+    cout<<endl<<"The Original Table\n";
+   
+    //Create new object and print it
+    const int *naugT = table.getTable();
+    
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){                    
+           cout << setw(3) << naugT[i*cols+j] <<"  ";                                      
+        }
+        cout<<endl;
+    }   
+    cout << endl;
+    
+    
+    //***************************************
+    //       Output the augmented array
+    //***************************************    
+    const int *augT = table.getAugTable();
 
+    cout<<"\n\nThe Augmented Table\n";
+    
+    for(int i=0;i<=rows;i++){     //changed condition to <=
+        for(int j=0;j<=cols;j++){ //changed condition to <=        
+      
+           cout << setw(3) << augT[i*(cols+1)+j] <<"  ";                                       
+        }
+        cout<<endl;
+    }   
+    cout << endl;
+    
+}
 
 //******************************************************************************
 //                         Problem 4
@@ -204,29 +267,45 @@ void prblm4(){
 //                         Problem 5
 //******************************************************************************
 void prblm5(){
-    cout<<"problem 5\nEmployee Class";
-        //Driver Program
+    cout<<"\nProblem 5\nEmployee Class";
+    //Driver Program   
     Prb5Employee Mark("Mark","Boss",215.50);
     Mark.setHrsWrkd(-3);
-    Mark.toString();
+    printCharArry(Mark.toString());
+    
     Mark.CalculatePay(Mark.setHourlyRate(20.0),Mark.setHrsWrkd(25));
-    Mark.toString();
+    printCharArry(Mark.toString());
+    
     Mark.CalculatePay(Mark.setHourlyRate(40.0),Mark.setHrsWrkd(25));
-    Mark.toString();
+    printCharArry(Mark.toString());
+    
     Mark.CalculatePay(Mark.setHourlyRate(60.0),Mark.setHrsWrkd(25));
-    Mark.toString();
+    printCharArry(Mark.toString());
+    
     
     //Second employee
     Prb5Employee Mary("Mary","VP",50.00);
-    Mary.toString();
+    printCharArry(Mary.toString());
+    
     Mary.CalculatePay(Mary.setHourlyRate(50.0),Mary.setHrsWrkd(40));
-    Mary.toString();
+    printCharArry(Mary.toString());
+    
     Mary.CalculatePay(Mary.setHourlyRate(50.0),Mary.setHrsWrkd(50));
-    Mary.toString();
+    printCharArry(Mary.toString());
+    
     Mary.CalculatePay(Mary.setHourlyRate(50.0),Mary.setHrsWrkd(60));
-    Mary.toString();
+    printCharArry(Mary.toString());
+    cout<<"\nEXTRA CREDIT #1 ATTEMPTED for PROB5. RETURNED *char from toString()\n";
 }
 
+//Prints *char
+void printCharArry(const char *chArry){
+    cout<<fixed<<setprecision(2);
+    for(int i=0; i<strlen(chArry); i++){
+       cout<<fixed<<setprecision(2)<<chArry[i];
+    }
+    cout<<endl<<endl;
+}
 
 
 //******************************************************************************

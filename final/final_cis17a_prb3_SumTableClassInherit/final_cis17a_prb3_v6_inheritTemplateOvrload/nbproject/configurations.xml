@@ -4,12 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Prb1Random.h</itemPath>
-      <itemPath>Prb2Sort.h</itemPath>
-      <itemPath>Prb5Employee.h</itemPath>
-      <itemPath>Prob3Table.h</itemPath>
       <itemPath>Prob3TableInheritd.h</itemPath>
-      <itemPath>SavingsAcct.h</itemPath>
+      <itemPath>Table.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -18,7 +14,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>Prb5employee.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -43,19 +38,9 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="Prb1Random.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prb2Sort.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prb5Employee.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prb5employee.cpp" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Prob3Table.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Prob3TableInheritd.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="SavingsAcct.h" ex="false" tool="3" flavor2="0">
+      <item path="Table.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -80,19 +65,9 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Prb1Random.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prb2Sort.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prb5Employee.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Prb5employee.cpp" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Prob3Table.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Prob3TableInheritd.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="SavingsAcct.h" ex="false" tool="3" flavor2="0">
+      <item path="Table.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

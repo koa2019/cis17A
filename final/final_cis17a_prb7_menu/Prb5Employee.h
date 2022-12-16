@@ -8,12 +8,12 @@
 #ifndef PRB5EMPLOYEE_H
 #define PRB5EMPLOYEE_H
 
-#include "Employee.h"
 #include <string>
 using namespace std;  //STD Name-space where Library is compiled
 
-class Prb5Employee : public Employee {
+class Prb5Employee {
     private:
+        char name[20];
         char jobTitle[20];
         float hourlyRate;
         int hrsWrkd;
@@ -34,7 +34,7 @@ class Prb5Employee : public Employee {
         float CalculatePay(float,int);
         float getGrossPay(float,int);
         float getNetPay(float);        
-        void  toString();
+        char  *toString();
 };
 
 #endif /* PRB5EMPLOYEE_H */

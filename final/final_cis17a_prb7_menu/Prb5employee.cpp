@@ -1,23 +1,26 @@
 //User Libraries
 #include "Prb5Employee.h"
-#include "Employee.h"
+//#include "Employee.h"
 //System Libraries
+#include <cstring>  //strcat
 #include <string>
 #include <iostream>   //Input/Output Library
+
 using namespace std;  //STD Name-space where Library is compiled
 
 
 // function sets this class's member variables and it's parent class member variables
 void Prb5Employee::setWrkr(char nme[],char jTitle[],float hrRate){
     for(int i=0;i<20;i++){
-        jobTitle[i]=jTitle[i];
+        name[i] = nme[i];
+    }
+    for(int i=0;i<20;i++){
+        jobTitle[i] = jTitle[i];
     }
     hourlyRate=setHourlyRate(hrRate);
     hrsWrkd=0;
     grossPay=0;
-    netPay=0;
-    //Call inherited function from Employee Class
-    setName(nme);
+    netPay=0;    
 }
 
  // CalculatePay(Mark.setHourlyRate(20.0),Mark.setHrsWrkd(25));
@@ -96,12 +99,20 @@ int Prb5Employee::setHrsWrkd(int hr){
      }
 }
 
-void Prb5Employee::toString(){    
-    string jbTitle = jobTitle;
-    cout << "Employee:        " << getName() << endl
-         << "Job Title:       " << jbTitle  << endl   
-         << "Hourly Pay Rate: " << hourlyRate << endl
-         << "Hours Worked:    " << hrsWrkd    << endl
-         << "Gross Pay:       " << grossPay << endl
-         << "Net Pay:         " << netPay << endl<<endl;    
+char *Prb5Employee::toString(){ 
+    string str="\nEmployee:        ";   
+    str.append(name)
+       .append("\nJob Title:       ").append(jobTitle)
+       .append("\nHourly Pay Rate: ").append(to_string(hourlyRate))
+       .append("\nHours Worked:    ").append(to_string(hrsWrkd))
+       .append("\nGross Pay:       ").append(to_string(grossPay))
+       .append("\nNet Pay:         ").append(to_string(netPay));
+    
+    //cout<<str<<" length="<<str.length()<<endl<<endl;
+    
+    char *chArry = new char[str.length()+1];
+    for(int i=0; i<(str.length()+1); i++){
+        chArry[i]=str[i];
+    }    
+    return chArry;  
 }

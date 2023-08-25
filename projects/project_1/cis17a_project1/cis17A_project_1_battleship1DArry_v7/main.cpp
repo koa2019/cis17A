@@ -193,11 +193,13 @@ char **fill2DPtr(char *bordPtr,const int SIZE17){
     return ptr2D;
 }
 
+
 // read binary file and return one record 
 Choices *readBin1(fstream &binFile,int recInd){
     int count=0;    
     long cursor = 0L;
 
+	// create 1 structure
     Choices *choice = new Choices;
    
     // Find the record by finding the size of one Choice structure & 
@@ -207,26 +209,39 @@ Choices *readBin1(fstream &binFile,int recInd){
         // set cursor to beginning of file       
         binFile.seekg(cursor,ios::beg);
         
-        // reading  size of char arr[]
-        binFile.read(reinterpret_cast<char *>(&choice->size),sizeof(int));
+        // reading  size of char arr[13] and saving it in the size of an integer
+        binFile.read(reinterpret_cast<char *>(&choice->size), sizeof(int));
         
-        // calculates # of bytes by multiplying index & size of each data types in Choice structure
-        cursor += ( sizeof(int) + choice->size*sizeof(char) + choice->size*sizeof(int));
+		
+        // Accumulates the # of bytes in each record by multiplying size of this array and this array's data type for each member in the record
+		// Adding   sizeof(sizeMember) +          sizeMember*sizeof(char[]Member)   + 		  sizeMember*sizeof(int[]Member)
+        cursor += ( sizeof(int)        +  choice->size*sizeof(char)                 + choice->size*sizeof(int));
     }   
     //cout << "cursor " << cursor << " bits\n";
     
-    // set cursor to beginning of file so it can read that record
+	
+    // set cursor to beginning of file so it can read 1 record
     binFile.seekg(cursor, ios::beg);
-
-    // read 1 record from binary file & save to new pointer
-    binFile.read(reinterpret_cast<char *> (&choice->size), sizeof(int));    
-    choice->arr = new char[choice->size]; // allocate memory for char[]
-    binFile.read(reinterpret_cast<char *>(choice->arr),choice->size*sizeof(char));
+    
+	// read in size of arr[] and index[]
+    binFile.read(reinterpret_cast<char *> (&choice->size), sizeof(int));  
+	
+	// allocate memory for char[]
+    choice->arr = new char[choice->size]; 
+	
+	// read char[] and save to structure
+    binFile.read(reinterpret_cast<char *>(choice->arr), choice->size*sizeof(char));
+	
+	// allocate memory for int[]
     choice->indx = new int[choice->size];
+	
+	// read int[] and save to structure
     binFile.read(reinterpret_cast<char *>(choice->indx),choice->size*sizeof(int));
     
     return choice;
 }
+
+
 
 // Declare & fill 1 instances of Choice structure
 Choices *fillChoice(char *bordPtr,const int SIZE17){    

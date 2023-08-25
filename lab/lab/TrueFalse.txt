@@ -1,0 +1,66 @@
+/* 
+ * File:    main.cpp
+ * Author:  Danielle F
+ * Created: 12-07-2022 @ 6:36 PM
+ * Purpose:  final_cis17a_prb
+ * 
+ */
+
+//System Libraries
+#include <iostream>   //Input/Output Library
+using namespace std;  //STD Name-space where Library is compiled
+
+//User Libraries
+class TrueFalse {
+private:
+    bool isValid;
+public:
+    TrueFalse();//default constructor
+    TrueFalse(bool);//constructor #2
+    void setBool(bool); //Mutator functions
+    bool getBool() const; //Accessor function
+};
+
+//************************************
+//class function member specifications
+//************************************
+TrueFalse::TrueFalse(){ //default constructor
+    isValid=true;
+}
+TrueFalse::TrueFalse(bool x){ //constructor #2
+    setBool(x);
+}
+void TrueFalse::setBool(bool x){
+     isValid=x;
+}
+bool TrueFalse::getBool() const {
+    return isValid;
+}
+
+//Code Begins Execution Here with function main
+int main(int argc, char** argv) {
+    //Set random number seed once here
+    
+    //creates new object with default constructor
+    TrueFalse tf1; 
+    
+    cout << "Created with Default Constructor.\ntf1 isValid = " << tf1.getBool() << endl;
+    
+    //reset member variable's value
+    tf1.setBool(false);
+    
+    cout << "tf1 isValid = " << tf1.getBool() << endl;
+    
+    
+    //creates new object with constructor #2
+    TrueFalse tf2(true);  
+    
+    cout << "Created with Constructor #2.\ntf2 isValid = " << tf2.getBool() << endl;
+    
+   
+    tf2.setBool(0);
+
+    cout << "tf2 isValid = " << tf2.getBool() << endl;
+    
+    return 0;
+}
